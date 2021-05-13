@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>なに診断？</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1>最後まで何の診断か分からないテスト(全20問)</h1>
+  </header>
+  <main>
+    <div class ="question_area">
+    <p id="count">第１問</p>
+    <p id="question"></p>
+  </div>
+  <div class = "BOTAN">
+    <form action="">
+    <ul>
+      <li>
+        <input type="radio" name="choices" id="choice0" value="0">
+        <label for="choice0" id="choice0_label"></label>
+      </li>
+      <li>
+        <input type="radio" name="choices" id="choice1" value="1">
+        <label for="choice1" id="choice1_label"></label>
+      </li> 
+      <li>
+        <input type="radio" name="choices" id="choice2" value="2">
+        <label for="choice2" id="choice2_label"></label>
+      </li>
+    </ul>
+    </form>
+  
+</div>
+
+    
+  </main>
+  <footer class="footer">
+    <h1 id="result"></h1>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+
+    $(function () {
+
+      const questions = [
+        '物事に計画性はある？',
+        '自分の身の安全は？',
+        '儲け話の為なら人を騙せる？',
+        '責任感は？',
+        '決まり事に従うのは？',
+        '成人してから人を殴った？',
+        '欲求は制御できる？',
+        '後先考えず進む事は？',
+        'トーク力に自信がある？',
+        'ストレスは？',
+        '自分の生き方に後悔は？',
+        '感動的なシーンで泣く？',
+        '他人への興味は？',
+        '相手の意見に屈する事は？',
+        '判断力に自信がある？',
+        '他人に無理なお願いは？',
+        '感情の切り替えは？',
+        '恋人を怒らせたら？',
+        '衝動買いはする？',
+        '嘘をつくことに抵抗は？',
+      ];
+
+      const choices = [
+        ['ある', '大体ある', 'ない'],
+        ['最優先', '基本優先', 'どうでもいい'],
+        ['騙せる', '金額による', '騙せない'],
+        ['ある', 'まぁまぁある', 'ない'],
+        ['当たり前', '大体従う', '苦手'],
+        ['殴った', '子の躾ならある', 'ない'],
+        ['100％できる', '大体できる', 'できない事が多い'],
+        ['よくある', 'あまりない', 'ない'],
+        ['ある', 'ちょっとある', 'ない'],
+        ['感じやすい', 'たまに感じる', '感じない'],
+        ['ある', 'ちょっとある', 'ない'],
+        ['大体泣く', 'たまに泣く', '泣かない事が多い'],
+        ['ある', '人による', 'ない'],
+        ['ある', 'たまにある', 'ほぼない'],
+        ['ある', 'ちょっとある', 'ない'],
+        ['できる', 'たまにする', 'できない'],
+        ['上手だと思う', '時と場合による', '下手だと思う'],
+        ['ハグして「ごめんね」', '「ごめんね」', '謝れない事が多い'],
+        ['よくする', 'たまにする', 'しない'],
+        ['ある', 'ちょっとある', 'ない'],
+      ];
+
+      const answer = [2,2,0,2,2,0,2,0,0,2,2,2,2,2,0,0,0,0,0,2];
+
+      let count = 0;
+      let correct = 0;
+
+      $('#question').text(questions[count]);
+      $('#choice0_label').text(choices[count][0]);
+      $('#choice1_label').text(choices[count][1]);
+      $('#choice2_label').text(choices[count][2]);
+
+      $('input[name="choices"]').on('click', function () {
+        if ($(this).val() == answer[count]) {
+          // $('#result').text('正解');  
+          correct++; }       
+        // } else {
+        // $('#result').text('ぶー');
+        // }
+        
+        count++;
+        if (count < questions.length) {
+          $('#count').text('第' + (Number(count) + 1) + '問');
+          $('#question').text(questions[count]);
+          $('#choice0_label').text(choices[count][0]);
+          $('#choice1_label').text(choices[count][1]);
+          $('#choice2_label').text(choices[count][2]);
+        } else {
+          $('#result').text('あなたのサイコパス度は' + correct*5 + '％です');
+        }
+      });
+    });
+
+
+
+  </script>
+</body>
+
+</html>
